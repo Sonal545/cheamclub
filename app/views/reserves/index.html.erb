@@ -1,0 +1,30 @@
+<h1>Listing reserves</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Lawn</th>
+      <th>Date</th>
+      <th>Details</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reserves.each do |reserf| %>
+      <tr>
+        <td><%= reserf.lawn_id %></td>
+        <td><%= reserf.date %></td>
+        <td><%= reserf.details %></td>
+        <td><%= button_to "Select", update_booking_path(reserve_id:reserve)%></td>
+        <td><%= link_to 'Show', reserf %></td>
+        <td><%= link_to 'Edit', edit_reserf_path(reserf) %></td>
+        <td><%= link_to 'Destroy', reserf, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Reserve', new_reserf_path %>
