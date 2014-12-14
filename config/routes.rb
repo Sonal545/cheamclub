@@ -1,9 +1,20 @@
 Rails.application.routes.draw do
+  
+  
+  
+  devise_for :members
+  devise_for :views
+  #match "lawns" => "bookingalawn#lawnsdisplay", via: :get
+  match "/display_booking" => "bookingalawn#display_booking", via: :get
+
+  
+  resources :reserves
+
+  resources :lawns
+
   resources :pgms
 
   resources :newsletts
-
-  resources :upcomings
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -16,24 +27,23 @@ Rails.application.routes.draw do
 
   get 'ccbc/whatyouneed'
 
- # get 'ccbc/newsletter'
-
   get 'ccbc/clubmatter'
 
   get 'ccbc/howtogetthere'
-
-  get 'ccbc/bookalawn'
-
-  get 'ccbc/linkstosite'
-
+   get 'ccbc/linkstosite'
+ # match '/bookalawn', :to => 'booking#bookalawn', via: :get
+  #get  'booking' => 'booking#index'
+ # match "/show_booking" => "booking#show_booking", via: :get
+  #match "bookalawn/:id" => "booking#bookalawn", via: :post
+  
+ 
+ # match "booknow/:id" => "booking#booknow", via: :get
   root :to => 'ccbc#home'
   match '/abouttheclub', :to => 'ccbc#abouttheclub', via: :get
   match '/jointheclub', :to => 'ccbc#jointheclub', via: :get
   match '/whatyouneed', :to => 'ccbc#whatyouneed', via: :get
-  #match '/newsletter', :to => 'ccbc#newsletter', via: :get
   match '/clubmatter', :to => 'ccbc#clubmatter', via: :get
   match '/howtogetthere', :to => 'ccbc#howtogetthere', via: :get
-  match '/bookalawn', :to => 'ccbc#bookalawn', via: :get
   match '/linkstosite', :to => 'ccbc#linkstosite', via: :get 
 
   # The priority is based upon order of creation: first created -> highest priority.
